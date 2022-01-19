@@ -5,6 +5,8 @@ import { CAMPSITES } from '../shared/campsites';
 import { PROMOTIONS } from '../shared/promotions';
 import { PARTNERS } from '../shared/partners';
 
+// test
+
 function RenderItem({ item }) {
   if (item) {
     return (
