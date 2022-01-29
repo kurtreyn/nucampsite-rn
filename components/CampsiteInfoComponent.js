@@ -223,6 +223,7 @@ class CampsiteInfo extends Component {
 const styles = StyleSheet.create({
   cardRow: {
     alignItems: 'center',
+    justifyContent: 'center',
     flex: 1,
     flexDirection: 'row',
     margin: 20,
