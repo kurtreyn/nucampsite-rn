@@ -5,8 +5,8 @@ import {
   ScrollView,
   FlatList,
   Modal,
-  Button,
   StyleSheet,
+  Button,
   Alert,
   PanResponder,
 } from 'react-native';
@@ -36,6 +36,7 @@ function RenderCampsite(props) {
   const view = React.createRef();
 
   const recognizeDrag = ({ dx }) => (dx < -200 ? true : false);
+  const recognizeComment = ({ dx }) => (dx > 200 ? true : false);
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -51,7 +52,7 @@ function RenderCampsite(props) {
       if (recognizeDrag(gestureState)) {
         Alert.alert(
           'Add Favorite',
-          'Are you sure you wish to add ' + campsite.name + ' to favorites?',
+          'Are you sure you wish to add ' + campsite.name + ' to favorites ?',
           [
             {
               text: 'Cancel',
@@ -68,6 +69,8 @@ function RenderCampsite(props) {
           ],
           { cancelable: false }
         );
+      } else if (recognizeComment(gestureState)) {
+        props.onShowModal();
       }
       return true;
     },
@@ -163,15 +166,9 @@ class CampsiteInfo extends Component {
     this.setState({ showModal: !this.state.showModal });
   }
 
-  handleComment(campsiteId) {
-    this.props.postComment(
-      campsiteId,
-      this.state.rating,
-      this.state.author,
-      this.state.text
-    );
+  handleComment(campsiteId, rating, author, text) {
+    this.props.postComment(campsiteId, rating, author, text);
     this.toggleModal();
-    console.log(JSON.stringify(this.state));
   }
 
   resetForm() {
@@ -276,7 +273,6 @@ class CampsiteInfo extends Component {
 const styles = StyleSheet.create({
   cardRow: {
     alignItems: 'center',
-    justifyContent: 'center',
     flex: 1,
     flexDirection: 'row',
     margin: 20,
