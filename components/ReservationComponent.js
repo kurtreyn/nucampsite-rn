@@ -35,29 +35,31 @@ class Reservation extends Component {
 
   handleReservation() {
     console.log(JSON.stringify(this.state));
-    Alert.alert(
-      'Begin Search?',
+    const title = 'Begin Search';
+    const message =
       'Number of Campers: ' +
-        this.state.campers +
-        '\n' +
-        'Hike-In' +
-        this.state.hikeIn +
-        '\n' +
-        'Date: ' +
-        this.state.date,
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-          onPress: () => this.resetForm(),
-        },
-        {
-          text: 'OK',
-          onPress: () => this.resetForm(),
-        },
-      ],
-      { cancelable: false }
-    );
+      this.state.campers +
+      '\n' +
+      'Hike-In' +
+      this.state.hikeIn +
+      '\n' +
+      'Date: ' +
+      this.state.date;
+
+    const buttons = [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+        onPress: () => this.resetForm(),
+      },
+      {
+        text: 'OK',
+        onPress: () => this.resetForm(),
+      },
+    ];
+    const options = { cancelable: false };
+
+    Alert.alert(title, message, buttons, options);
   }
 
   resetForm() {
