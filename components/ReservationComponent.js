@@ -8,7 +8,6 @@ import {
   Switch,
   Button,
   Alert,
-  Modal,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Animatable from 'react-native-animatable';
@@ -67,7 +66,6 @@ class Reservation extends Component {
       hikeIn: false,
       date: new Date(),
       showCalendar: false,
-      showModal: false,
     });
   }
 
